@@ -1,36 +1,32 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import "@/App.css";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import Home from "@/components/Home/Home";
+import Services from "@/components/Services/Services";
+import Prices from "@/components/Prices/Prices";
+import Gallery from "@/components/Gallery/Gallery";
+import Reviews from "@/components/Reviews/Reviews";
+import Hygiene from "@/components/Hygiene/Hygiene";
+import Contact from "@/components/Contact/Contact";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
+import Booking from "@/components/Booking/Booking";
 
 function App() {
-  const [count, setCount] = useState(0);
+  useSmoothScroll();
 
   return (
-    <>
+    <div className="bg-gradient-to-b from-rose-50 to-white text-slate-800">
       <Header />
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <Home />
+      {/* <Services /> */}
+      <Prices />
+      {/* <Gallery /> */}
+      <Booking />
+      {/* <Reviews /> */}
+      <Hygiene />
+      <Contact />
+      <Footer />
+    </div>
   );
 }
 
