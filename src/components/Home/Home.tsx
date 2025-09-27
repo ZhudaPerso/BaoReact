@@ -22,16 +22,6 @@ function Home() {
             Prestations de manucure, nail art, extensions de cils et soins.
             {/* <!-- −10% pour les nouvelles clientes. --> */}
           </p>
-          <div className="mt-8 flex gap-3 flex-wrap">
-            <a
-              href="#booking"
-              className="bg-[#fac570] text-black px-5 py-3 rounded-xl shadow hover:bg-[#f0a94a]"
-            >
-              Réserver en ligne
-            </a>
-            {/* <!-- <a href="#services" className="px-5 py-3 rounded-xl border border-slate-300 hover:border-[#f6c987]">Voir les
-            services</a> --> */}
-          </div>
           {/* <!-- <div className="mt-6 flex items-center gap-4 text-sm text-slate-600">
           <div className="flex -space-x-2">
             <img className="w-8 h-8 rounded-full border-2 border-white"
