@@ -15,7 +15,7 @@ function NavBar() {
         {/* <!-- <li><a href="#services" className="hover:text-[#fac570]">Services</a></li> --> */}
         <li>
           <a href="#prices" className="hover:text-[#fac570]">
-            Tarifs
+            Prestations
           </a>
         </li>
         {/* <li>
@@ -30,7 +30,7 @@ function NavBar() {
         </li>
       </ul>
       <a
-        href="#booking"
+        href="#prices"
         className="inline-block bg-[#fac570] text-black px-3 py-2 md:px-4 md:py-2 rounded-xl shadow hover:bg-[#f0a94a] text-sm md:text-base"
       >
         Réserver

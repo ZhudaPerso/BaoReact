@@ -9,7 +9,6 @@ import Reviews from "@/components/Reviews/Reviews";
 import Hygiene from "@/components/Hygiene/Hygiene";
 import Contact from "@/components/Contact/Contact";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
-import Booking from "@/components/Booking/Booking";
 
 function App() {
   useSmoothScroll();
@@ -21,7 +20,6 @@ function App() {
       {/* <Services /> */}
       <Prices />
       {/* <Gallery /> */}
-      <Booking />
       {/* <Reviews /> */}
       <Hygiene />
       <Contact />

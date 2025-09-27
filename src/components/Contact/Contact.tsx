@@ -1,4 +1,5 @@
 import React from "react";
+import { categories } from "@/constant/categories";
 
 function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
@@ -17,11 +18,14 @@ function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     datetime = datetime.replace("T", " ");
   }
   let notes = get("notes");
-  const lines: string[] = [
-    "Bonjour, je souhaite réserver une prestation chez Bao Beauté.",
-  ];
+  const hour = new Date().getHours();
+  const greet = hour >= 19 ? "Bonsoir" : "Bonjour";
+
+  const lines: string[] = [];
+  lines.push(`${greet}, je souhaiterais réserver chez Bao Beauté 🙂`);
+
   const fullName = ((civ ? civ + " " : "") + (name || "")).trim();
-  if (fullName) lines.push("Nom: " + fullName);
+  if (fullName) lines.push(`👤 Nom : ${fullName}`);
   let svcGroupLabel = "";
   const svcSelect = form.querySelector<HTMLSelectElement>('[name="service"]');
   if (svcSelect) {
@@ -36,14 +40,18 @@ function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   }
   if (service) {
     if (svcGroupLabel) {
-      lines.push("Prestation: " + svcGroupLabel);
-      lines.push(service);
+      lines.push(`✨ Prestation : ${svcGroupLabel}`);
+      lines.push(`• ${service}`);
     } else {
-      lines.push("Prestation: " + service);
+      lines.push(`✨ Prestation : ${service}`);
     }
   }
-  if (datetime) lines.push("Créneau préféré: " + datetime);
-  if (notes) lines.push("Remarques: " + notes);
+  if (datetime) lines.push(`📅 Créneau préféré : ${datetime}`);
+  if (notes) lines.push(`📝 Remarques : ${notes}`);
+  lines.push("");
+  lines.push(
+    "Pouvez-vous me confirmer la disponibilité par retour de SMS ? Merci beaucoup ! 🙏"
+  );
   const body = encodeURIComponent(lines.join("\n"));
   const smsNumber = "+33766350487";
   const uri = "sms:" + smsNumber + "?&body=" + body;
@@ -58,26 +66,6 @@ function Contact() {
       className="py-16 bg-gradient-to-r from-[#fff4e3] to-[#fde8c8] scroll-mt-4 md:scroll-mt-8"
     >
       <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10">
-        <div>
-          <h2 className="text-3xl md:text-4xl font-semibold">Nous contacter</h2>
-          <p className="mt-4 text-slate-600">
-            <a className="block" href="tel:+33766350487">
-              Tel: +33 7 66 35 04 87
-            </a>
-          </p>
-          <p className="mt-2 text-slate-600">Horaire: 7j/7, 10:00–20:00</p>
-          <p className="mt-2 text-slate-600">
-            Adresse: 39 Rue Cardinet 75017 Paris
-          </p>
-          <a
-            className="inline-flex items-center gap-2 mt-3 bg-[#fac570] text-black px-4 py-2 rounded-xl"
-            href="https://www.google.com/maps/place/BAO+BEAUT%C3%89/@48.8824818,2.3024393,591m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47e66f476b7e1955:0x25234e653bdd906a!8m2!3d48.8824783!4d2.3050196!16s%2Fg%2F11xvcmfr2q?entry=ttu&g_ep=EgoyMDI1MDkwOC4wIKXMDSoASAFQAw%3D%3D"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ouvrir dans Maps
-          </a>
-        </div>
         <form
           id="booking-form"
           className="bg-white rounded-2xl border p-6 shadow-sm"
@@ -94,10 +82,9 @@ function Contact() {
                 name="civility"
                 aria-label="Civilité"
                 className="mt-1 border rounded-lg p-2 w-24 md:w-28"
+                defaultValue="Mme"
               >
-                <option value="Mme" selected>
-                  Mme
-                </option>
+                <option value="Mme">Mme</option>
                 <option value="M">M</option>
               </select>
               <input
@@ -116,116 +103,31 @@ function Contact() {
               className="mt-1 w-full border rounded-lg p-2"
               required
             >
-              <optgroup label="Onglerie — Résine">
-                <option value="Pose de la résine + SP — 60€">
-                  Pose de la résine + SP — 60€
-                </option>
-                <option value="Pose de la résine + French — 70€">
-                  Pose de la résine + French — 70€
-                </option>
-                <option value="Remplissage résine + SP — 55€">
-                  Remplissage résine + SP — 55€
-                </option>
-                <option value="Remplissage résine + French — 65€">
-                  Remplissage résine + French — 65€
-                </option>
-              </optgroup>
-              <optgroup label="Onglerie — Gel">
-                <option value="Pose du gel + SP — 70€">
-                  Pose du gel + SP — 70€
-                </option>
-                <option value="Pose du gel + French — 80€">
-                  Pose du gel + French — 80€
-                </option>
-                <option value="Remplissage du gel + SP — 65€">
-                  Remplissage du gel + SP — 65€
-                </option>
-                <option value="Remplissage du gel + French — 75€">
-                  Remplissage du gel + French — 75€
-                </option>
-                <option value="Gainage + SP — 43€">Gainage + SP — 43€</option>
-              </optgroup>
-              <optgroup label="Soins mains">
-                <option value="Pose vernis semi-permanent — 28€">
-                  Pose vernis semi-permanent — 28€
-                </option>
-                <option value="Beauté des mains — 20€">
-                  Beauté des mains — 20€
-                </option>
-                <option value="Beauté des mains + SP — 43€">
-                  Beauté des mains + SP — 43€
-                </option>
-                <option value="Beauté des mains + French — 53€">
-                  Beauté des mains + French — 53€
-                </option>
-              </optgroup>
-              <optgroup label="Soins pieds">
-                <option value="Pose vernis semi-permanent — 28€">
-                  Pose vernis semi-permanent — 28€
-                </option>
-                <option value="Beauté des pieds — 35€">
-                  Beauté des pieds — 35€
-                </option>
-                <option value="Beauté des pieds + SP — 58€">
-                  Beauté des pieds + SP — 58€
-                </option>
-                <option value="Beauté des pieds + French — 68€">
-                  Beauté des pieds + French — 68€
-                </option>
-              </optgroup>
-              <optgroup label="Dépose / Réparation">
-                <option value="Dépose vernis semi-permanent — 10€">
-                  Dépose vernis semi-permanent — 10€
-                </option>
-                <option value="Dépose résine / gel — 15€">
-                  Dépose résine / gel — 15€
-                </option>
-                <option value="Réparation ongle cassé (résine / gel) — 5€">
-                  Réparation ongle cassé (résine / gel) — 5€
-                </option>
-              </optgroup>
-              <optgroup label="Épilation (femmes)">
-                <option value="Sourcils / Lèvre / Menton — 10€">
-                  Sourcils / Lèvre / Menton — 10€
-                </option>
-                <option value="Aisselles — 12€">Aisselles — 12€</option>
-                <option value="Bras demi — 12€">Bras demi — 12€</option>
-                <option value="Bras complets — 18€">Bras complets — 18€</option>
-                <option value="Jambes demi — 18€">Jambes demi — 18€</option>
-                <option value="Jambes complètes — 28€">
-                  Jambes complètes — 28€
-                </option>
-                <option value="Visage — 25€">Visage — 25€</option>
-                <option value="Maillot simple — 16€">
-                  Maillot simple — 16€
-                </option>
-                <option value="Maillot échancré — 20€">
-                  Maillot échancré — 20€
-                </option>
-                <option value="Maillot semi-intégral — 25€">
-                  Maillot semi-intégral — 25€
-                </option>
-                <option value="Maillot intégral — 35€">
-                  Maillot intégral — 35€
-                </option>
-              </optgroup>
-              <optgroup label="Cils / Sourcils">
-                <option value="Extensions de cils un par un — 85€">
-                  Extensions de cils un par un — 85€
-                </option>
-                <option value="Remplissage des cils léger — 50€">
-                  Remplissage des cils léger — 50€
-                </option>
-                <option value="Remplissage des cils perdu beaucoup — 60€">
-                  Remplissage des cils perdu beaucoup — 60€
-                </option>
-                <option value="Teinture sourcils ou cils — 20€">
-                  Teinture sourcils ou cils — 20€
-                </option>
-                <option value="Rehaussement des cils — 55€">
-                  Rehaussement des cils — 55€
-                </option>
-              </optgroup>
+              {categories.map((cat) =>
+                cat.subcategories.map((sub) => (
+                  <optgroup
+                    key={`${cat.name}-${sub.name || "default"}`}
+                    label={`${cat.name}${sub.name ? ` — ${sub.name}` : ""}`}
+                  >
+                    {sub.services.map((srv, idx) => (
+                      <option
+                        key={`${srv.name}-${srv.price}-${idx}`}
+                        value={`${srv.name}${
+                          srv.options && srv.options.length
+                            ? " + " + srv.options.join(" + ")
+                            : ""
+                        } — ${srv.price}€`}
+                      >
+                        {srv.name}
+                        {srv.options && srv.options.length
+                          ? ` + ${srv.options.join(" + ")}`
+                          : ""}
+                        {` — ${srv.price}€`}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))
+              )}
             </select>
           </label>
 
@@ -252,6 +154,42 @@ function Contact() {
             Envoyer la demande
           </button>
         </form>
+        <div>
+          <h2 className="text-3xl md:text-4xl font-semibold">Nous contacter</h2>
+          <p className="mt-4 text-slate-600">
+            <a className="block" href="tel:+33766350487">
+              Tel: +33 7 66 35 04 87
+            </a>
+          </p>
+          <p className="mt-2 text-slate-600">Horaire: 7j/7, 10:00–20:00</p>
+          <p className="mt-2 text-slate-600">
+            Adresse: 39 Rue Cardinet 75017 Paris
+          </p>
+          <a
+            className="inline-flex items-center gap-2 mt-3 bg-[#fac570] text-black px-4 py-2 rounded-xl"
+            href="https://www.google.com/maps/place/BAO+BEAUT%C3%89/@48.8824818,2.3024393,591m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47e66f476b7e1955:0x25234e653bdd906a!8m2!3d48.8824783!4d2.3050196!16s%2Fg%2F11xvcmfr2q?entry=ttu&g_ep=EgoyMDI1MDkwOC4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ouvrir dans Maps
+          </a>
+          <div className="flex gap-3 flex-wrap mt-4">
+            <a
+              href="https://wa.me/33766350487"
+              className="bg-emerald-500 text-white px-5 py-3 rounded-xl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+            </a>
+            <a
+              href="tel:+33766350487"
+              className="bg-slate-900 text-white px-5 py-3 rounded-xl"
+            >
+              Téléphone
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
