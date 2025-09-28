@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import img1 from "@/assets/hygiene/1.jpg";
-import img2 from "@/assets/hygiene/2.jpg";
-import img3 from "@/assets/hygiene/3.jpg";
-import img4 from "@/assets/hygiene/4.jpg";
-import img5 from "@/assets/hygiene/5.jpg";
-import img6 from "@/assets/hygiene/6.jpg";
-import img7 from "@/assets/hygiene/7.jpg";
-import img8 from "@/assets/hygiene/8.jpg";
+import img1 from "@/assets/work/y1.jpg";
+import img2 from "@/assets/work/y2.jpg";
+import img3 from "@/assets/work/y3.jpg";
+import img4 from "@/assets/work/w1.jpg";
+import img5 from "@/assets/work/w2.jpg";
+import img6 from "@/assets/work/w3.jpg";
+import img7 from "@/assets/work/w4.jpg";
+import img8 from "@/assets/work/y4.jpg";
 
-const Hygiene = () => {
+const Work = () => {
   // Images for the carousel
   const images = [img1, img2, img3, img4, img5, img6, img7, img8];
 
@@ -89,17 +89,21 @@ const Hygiene = () => {
   }, []);
 
   return (
-    // <!-- 团队 + 卫生 -->
+    // <!-- 团队 -->
     <section className="py-16 bg-gradient-to-r from-[#fff4e3] to-[#fde8c8] scroll-mt-4 md:scroll-mt-8">
       <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10">
         <div>
           <h2 className="text-2xl font-semibold">
-            Professionnalisme & Engagement hygiène
+            Notre équipe professionnelle, à l'écoute de votre beauté
           </h2>
           <ul className="mt-4 space-y-2 text-slate-700 list-disc pl-5">
             <li>
-              Consommables à usage unique, instruments stérilisés à haute
-              température
+              Ici, chaque cliente mérite toute notre attention. Nos stylistes
+              ongulaires allient savoir-faire, patience et minutie dans chaque
+              détail. De la préparation au design, chaque geste est réalisé avec
+              soin et passion. Nous croyons que la vraie beauté naît de la
+              précision et du cœur, et que votre satisfaction est notre plus
+              belle réussite.
             </li>
             {/* <!-- <li>Questionnaire allergies & information sur les pigments</li> --> */}
             {/* <!-- <li>
@@ -173,4 +177,4 @@ const Hygiene = () => {
   );
 };
 
-export default Hygiene;
+export default Work;

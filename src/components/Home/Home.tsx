@@ -1,19 +1,14 @@
+import img from "@/assets/gallery/2.jpeg";
+
 function Home() {
   return (
     <section
       id="home"
       className="relative pt-36 py-3 scroll-mt-4 md:scroll-mt-8"
     >
-      <div className="absolute inset-0 -z-10">
-        <img
-          src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop"
-          alt="nails"
-          className="w-full h-full object-cover opacity-20"
-        />
-      </div>
       <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-8 items-center">
         <div>
-          <h1 className="text-3xl md:text-5xl font-bold leading-tight text-ink">
+          <h1 className="text-3xl md:text-4xl font-bold leading-tight text-ink">
             Bao Beauté – Salon de beauté à Paris : manucure, nail art,
             extensions de cils, soins
           </h1>
@@ -38,7 +33,7 @@ function Home() {
         <div className="md:justify-self-end">
           <div className="rounded-3xl overflow-hidden shadow-xl ring-1 ring-black/5">
             <img
-              src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1200&auto=format&fit=crop"
+              src={img}
               alt="work"
               className="w-full h-[420px] object-cover"
             />

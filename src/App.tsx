@@ -4,9 +4,12 @@ import Footer from "@/components/Footer/Footer";
 import Home from "@/components/Home/Home";
 // import Services from "@/components/Services/Services";
 import Prices from "@/components/Prices/Prices";
-// import Gallery from "@/components/Gallery/Gallery";
+import Gallery from "@/components/Gallery/Gallery";
 // import Reviews from "@/components/Reviews/Reviews";
+import Booking from "@/components/Booking/Booking";
 import Hygiene from "@/components/Hygiene/Hygiene";
+import Work from "@/components/Work/Work";
+import FAQ from "@/components/FAQ/FAQ";
 import Contact from "@/components/Contact/Contact";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
@@ -19,9 +22,12 @@ function App() {
       <Home />
       {/* <Services /> */}
       <Prices />
-      {/* <Gallery /> */}
       {/* <Reviews /> */}
+      <Booking />
       <Hygiene />
+      <Work />
+      <Gallery />
+      <FAQ />
       <Contact />
       <Footer />
     </div>

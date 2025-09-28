@@ -1,3 +1,8 @@
+import img1 from "@/assets/gallery/1.jpeg";
+import img2 from "@/assets/gallery/2.jpeg";
+import img3 from "@/assets/gallery/3.jpeg";
+import img4 from "@/assets/gallery/4.jpeg";
+
 const Gallery = () => {
   return (
     // <!-- 作品集 -->
@@ -9,23 +14,23 @@ const Gallery = () => {
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
           <img
             className="rounded-2xl object-cover w-full h-56"
-            src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=800&auto=format&fit=crop"
-            alt="Nail art Bao Beauté Paris"
+            src={img1}
+            alt="Onglerie_1"
           />
           <img
             className="rounded-2xl object-cover w-full h-56"
-            src="https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?q=80&w=800&auto=format&fit=crop"
-            alt="Manucure à Paris – Bao Beauté"
+            src={img2}
+            alt="Onglerie_2"
           />
           <img
             className="rounded-2xl object-cover w-full h-56"
-            src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800&auto=format&fit=crop"
-            alt="Extensions de cils – Bao Beauté Paris"
+            src={img3}
+            alt="Extension_des_cils_1"
           />
           <img
             className="rounded-2xl object-cover w-full h-56"
-            src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop"
-            alt="Salon de beauté à Paris – Réalisations Bao Beauté"
+            src={img4}
+            alt="Extension_des_cils_2"
           />
         </div>
       </div>

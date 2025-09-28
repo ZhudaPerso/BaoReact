@@ -32,55 +32,34 @@ const Prices = () => {
   }) => {
     const val = makeServiceValue(srv);
 
-    // Jump/scroll to the contact section (keeps URL hash in sync)
-    const contactEl = document.getElementById("contact");
-    if (contactEl) {
-      contactEl.scrollIntoView({ behavior: "smooth", block: "start" });
-      // Also reflect hash for direct links
-      if (location.hash !== "#contact") {
-        history.replaceState(null, "", "#contact");
-      }
+    // Build a payload with richer info
+    const detail = {
+      name: srv.name,
+      price: srv.price,
+      options: srv.options || [],
+      time: (srv as any).time || "",
+      desc: (srv as any).desc || "",
+      category: categories[catIdx]?.name || "",
+      subcategory: currentSub?.name || "",
+      display: val,
+    };
+
+    try {
+      sessionStorage.setItem("selectedService", JSON.stringify(detail));
+    } catch {}
+
+    // Notify other parts of the app (Booking) that a service is selected
+    window.dispatchEvent(new CustomEvent("service:selected", { detail }));
+
+    // Navigate / scroll to the booking section for confirmation
+    const el = document.getElementById("booking");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      // Fallback to hash navigation if element not found yet
-      if (location.hash !== "#contact") {
-        location.hash = "contact";
+      if (location.hash !== "#booking") {
+        location.hash = "booking";
       }
     }
-
-    // After navigation/render, select the matching option in the Contact form
-    setTimeout(() => {
-      const sel = document.querySelector<HTMLSelectElement>(
-        'select[name="service"]'
-      );
-      if (!sel) return;
-      const idx = Array.from(sel.options).findIndex((o) => o.value === val);
-      if (idx >= 0) {
-        sel.selectedIndex = idx;
-        sel.dispatchEvent(new Event("change", { bubbles: true }));
-
-        // Visually highlight the Prestation select for a moment
-        sel.classList.add(
-          "ring-2",
-          "ring-amber-400",
-          "ring-offset-2",
-          "ring-offset-white",
-          "animate-pulse"
-        );
-        // Ensure the field is visible
-        sel.scrollIntoView({ behavior: "smooth", block: "center" });
-        sel.focus({ preventScroll: true });
-
-        setTimeout(() => {
-          sel.classList.remove(
-            "ring-2",
-            "ring-amber-400",
-            "ring-offset-2",
-            "ring-offset-white",
-            "animate-pulse"
-          );
-        }, 1600);
-      }
-    }, 0);
   };
 
   return (
@@ -187,7 +166,7 @@ const Prices = () => {
                           {srv.desc ? (
                             <div className="opacity-70">{srv.desc}</div>
                           ) : null}
-                          {srv.time ? <div>{srv.time}</div> : null}
+                          {srv.time ? <div>~ {srv.time}</div> : null}
                         </div>
                       </div>
                       <div className="text-right flex flex-col items-end gap-2">
@@ -201,7 +180,7 @@ const Prices = () => {
                           type="button"
                           onClick={() => handleChoose(srv)}
                           aria-label={`Choisir ${makeServiceValue(srv)}`}
-                          className="px-2 py-1 text-xs rounded border bg-white hover:bg-amber-50 active:translate-y-px"
+                          className="px-2 py-1 text-xs rounded border bg-white hover:bg-amber-50 active:translate-y-px border-amber-300"
                         >
                           Choisir
                         </button>
