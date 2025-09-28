@@ -143,18 +143,24 @@ const Booking = () => {
           id="booking-form"
           className="bg-white/70 rounded-2xl border p-6 shadow-sm border-amber-200"
           onSubmit={handleSubmit}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && e.target instanceof HTMLInputElement) {
+              // 阻止回车在输入框里触发“跳到下一个输入框”
+              e.preventDefault();
+            }
+          }}
         >
           <h3 className="text-xl font-semibold">
             Réservation par formulaire SMS
           </h3>
 
-          <label className="block mt-4 text-sm">
+          <label className="block mt-4 text-base">
             Nom
             <div className="flex items-center gap-3">
               <select
                 name="civility"
                 aria-label="Civilité"
-                className="mt-1 border rounded-lg p-2 w-24 md:w-28 border-amber-300"
+                className="mt-1 border rounded-lg p-2 w-24 md:w-28 border-amber-300 text-base"
                 defaultValue="Mme"
               >
                 <option value="Mme">Mme</option>
@@ -163,20 +169,20 @@ const Booking = () => {
               <input
                 name="name"
                 required
-                className="mt-1 w-full border rounded-lg p-2 border-amber-300"
+                className="mt-1 w-full border rounded-lg p-2 border-amber-300 text-base"
                 placeholder="Votre nom"
               />
             </div>
           </label>
 
-          <div className="block mt-4 text-sm">
+          <div className="block mt-4 text-base">
             <div className="flex items-center gap-3">
               <div>Prestation</div>
               <div className="flex-1 flex justify-end items-center">
                 <button
                   type="button"
                   onClick={goToPrices}
-                  className="inline-flex items-center justify-center w-full text-sm px-3 py-1.5 rounded-lg border border-amber-300 bg-white hover:bg-amber-50 active:translate-y-px"
+                  className="inline-flex items-center justify-center w-full text-base px-3 py-1.5 rounded-lg border border-amber-300 bg-white hover:bg-amber-50 active:translate-y-px"
                 >
                   Voir nos prestations
                 </button>
@@ -185,24 +191,26 @@ const Booking = () => {
             {selected ? (
               <div className="mt-1 w-full border rounded-lg p-3 border-amber-300 bg-white/70">
                 {selected.category || selected.subcategory ? (
-                  <div className="mt-0.5 text-xs text-slate-600">
+                  <div className="mt-0.5 text-base text-slate-600">
                     {selected.category}
                     {selected.subcategory ? ` — ${selected.subcategory}` : ""}
                   </div>
                 ) : null}
                 <div className="font-medium">{selected.name}</div>
                 {selected.options && selected.options.length ? (
-                  <ul className="mt-1 text-sm text-slate-700 list-disc list-inside">
+                  <ul className="mt-1 text-base text-slate-700 list-disc list-inside">
                     {selected.options.map((o, i) => (
                       <li key={i}>+ {o}</li>
                     ))}
                   </ul>
                 ) : null}
                 {selected.desc ? (
-                  <div className="mt-1 text-sm opacity-70">{selected.desc}</div>
+                  <div className="mt-1 text-base opacity-70">
+                    {selected.desc}
+                  </div>
                 ) : null}
                 {selected.time ? (
-                  <div className="mt-1 text-sm">~ {selected.time}</div>
+                  <div className="mt-1 text-base">~ {selected.time}</div>
                 ) : null}
                 <div className="mt-1 font-semibold">
                   {selected.price.toLocaleString("fr-FR", {
@@ -212,10 +220,16 @@ const Booking = () => {
                 </div>
               </div>
             ) : (
-              <div className="mt-1 w-full border rounded-lg p-3 border-amber-300 bg-white/40 text-slate-600">
+              <div className="mt-1 w-full border rounded-lg p-3 border-amber-300 bg-white/40 text-base">
                 Aucune prestation sélectionnée. Choisissez-en une dans la
                 section Prestations.
-                <input onClick={goToPrices} type="text" required />
+                <input
+                  onClick={goToPrices}
+                  type="checkbox"
+                  checked={false}
+                  className="text-base"
+                  required
+                />
               </div>
             )}
             {/* Hidden inputs used by handleSubmit to compose the SMS */}
@@ -257,21 +271,21 @@ const Booking = () => {
             />
           </div>
 
-          <label className="block mt-4 text-sm">
+          <label className="block mt-4 text-base">
             Créneau préféré
             <input
               name="datetime"
               type="datetime-local"
-              className="mt-1 w-full border rounded-lg p-2 border-amber-300"
+              className="mt-1 w-full border rounded-lg p-2 border-amber-300 text-base"
               required
             />
           </label>
 
-          <label className="block mt-4 text-sm">
+          <label className="block mt-4 text-base">
             Remarques
             <textarea
               name="notes"
-              className="mt-1 w-full border rounded-lg p-2 border-amber-300"
+              className="mt-1 w-full border rounded-lg p-2 border-amber-300 text-base"
               rows={3}
               placeholder="Teinte / allergies, etc."
             ></textarea>
