@@ -3,10 +3,10 @@ const FAQ = () => {
     // <!-- 常见问题 -->
     <section
       id="faq"
-      className="py-16 bg-gradient-to-r from-[#fff4e3] to-[#fde8c8] scroll-mt-4 md:scroll-mt-8"
+      className="pt-8 bg-gradient-to-r from-[#fff4e3] to-[#fde8c8] scroll-mt-4 md:scroll-mt-8"
     >
       <div className="mx-auto max-w-6xl px-4">
-        <h2 className="text-3xl md:text-4xl font-semibold">FAQ</h2>
+        <h2 className="text-2xl font-semibold">FAQ</h2>
         <div className="mt-6 space-y-4">
           <details className="group rounded-xl border p-4 bg-white/70 border-amber-200">
             <summary className="cursor-pointer font-medium">

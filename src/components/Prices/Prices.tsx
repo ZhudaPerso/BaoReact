@@ -22,6 +22,18 @@ const Prices = () => {
     setSubIdx(0);
   };
 
+  const handlePickSub = (idx: number) => {
+    setSubIdx(idx);
+    // On small screens, scroll to the services list after selection
+    if (typeof window !== "undefined" && window.matchMedia && window.matchMedia('(max-width: 767px)').matches) {
+      // wait for list to render
+      setTimeout(() => {
+        const el = document.getElementById('services-list');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
+    }
+  };
+
   const currentSub = useMemo(() => subcats[subIdx], [subIdx, subcats]);
 
   // When user clicks "Choisir" on a service: go to #contact and set the select value
@@ -65,10 +77,10 @@ const Prices = () => {
   return (
     <section
       id="prices"
-      className="py-16 bg-gradient-to-r from-[#fff4e3] to-[#fde8c8] scroll-mt-4 md:scroll-mt-8"
+      className="pt-16 bg-gradient-to-r from-[#fff4e3] to-[#fde8c8] scroll-mt-4 md:scroll-mt-8"
     >
       <div className="mx-auto max-w-6xl px-4">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-6">
+        <h2 className="text-2xl font-semibold mb-4">
           Choisissez votre prestation
         </h2>
 
@@ -99,14 +111,14 @@ const Prices = () => {
         </div>
 
         {/* Body: left subcategories + middle services */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-[260px_minmax(0,1fr)] gap-6">
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-[260px_minmax(0,1fr)] gap-6">
           {/* Left – subcategories vertical */}
           <aside className="bg-white/70 rounded-xl border border-amber-200 p-2 md:p-3">
             <ul className="divide-y divide-amber-100">
               {subcats.map((s, i) => (
                 <li key={`${s.name}-${i}`}>
                   <button
-                    onClick={() => setSubIdx(i)}
+                    onClick={() => handlePickSub(i)}
                     className={
                       "w-full text-left px-3 py-3 md:py-3.5 transition rounded-lg " +
                       (i === subIdx
@@ -130,7 +142,7 @@ const Prices = () => {
           </aside>
 
           {/* Middle – services list */}
-          <main className="bg-white/70 rounded-xl border border-amber-200">
+          <main id="services-list" className="bg-white/70 rounded-xl border border-amber-200 scroll-mt-20">
             <div className="px-4 md:px-6 py-4 border-b border-amber-100">
               <h3 className="text-lg md:text-xl font-semibold">
                 {currentSub?.name || "Services"}

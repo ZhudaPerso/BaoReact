@@ -3,7 +3,7 @@ function Contact() {
     // <!-- 联系方式 -->
     <section
       id="contact"
-      className="py-16 bg-gradient-to-r from-[#fff4e3] to-[#fde8c8] scroll-mt-4 md:scroll-mt-8"
+      className="py-8 bg-gradient-to-r from-[#fff4e3] to-[#fde8c8] scroll-mt-4 md:scroll-mt-8"
     >
       <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10">
         <div>

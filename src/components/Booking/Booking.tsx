@@ -20,21 +20,21 @@ function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     >(`[name="${name}"]`);
     return el ? el.value.trim() : "";
   };
-  let civ = get("civility");
-  let name = get("name");
-  let service_name = get("service_name");
-  let service_category = get("service_category");
-  let service_subcategory = get("service_subcategory");
-  let service_price = get("service_price");
+  const civ = get("civility");
+  const name = get("name");
+  const service_name = get("service_name");
+  const service_category = get("service_category");
+  const service_subcategory = get("service_subcategory");
+  const service_price = get("service_price");
   // Service information now comes from hidden inputs (set by selection)
-  let service_time = get("service_time");
-  let service_desc = get("service_desc");
-  let service_options = get("service_options");
+  const service_time = get("service_time");
+  const service_desc = get("service_desc");
+  const service_options = get("service_options");
   let datetime = get("datetime");
   if (datetime && datetime.indexOf("T") !== -1) {
     datetime = datetime.replace("T", " ");
   }
-  let notes = get("notes");
+  const notes = get("notes");
   const hour = new Date().getHours();
   const greet = hour >= 19 ? "Bonsoir" : "Bonjour";
 
@@ -92,6 +92,7 @@ const Booking = () => {
     try {
       const raw = sessionStorage.getItem("selectedService");
       if (raw) setSelected(JSON.parse(raw));
+    // eslint-disable-next-line no-empty
     } catch {}
 
     const onSelected = (e: Event) => {
@@ -130,11 +131,11 @@ const Booking = () => {
     // <!-- 预定 -->
     <section
       id="booking"
-      className="py-16 bg-gradient-to-r from-[#fff4e3] to-[#fde8c8] scroll-mt-4 md:scroll-mt-8"
+      className="pt-16 bg-gradient-to-r from-[#fff4e3] to-[#fde8c8] scroll-mt-4 md:scroll-mt-8"
     >
-      <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10">
+      <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-4 md:gap-10">
         <div>
-          <h2 className="text-3xl md:text-4xl font-semibold mb-6">
+          <h2 className="text-2xl font-semibold">
             Finalisez votre réservation
           </h2>
         </div>
