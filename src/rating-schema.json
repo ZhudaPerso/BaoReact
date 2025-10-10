@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": "BAO BEAUTÉ",
+  "image": "https://baobeaute.fr/src/assets/logo/logo_192.png",
+  "url": "https://baobeaute.fr",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "39 Rue Cardinet",
+    "addressLocality": "Paris",
+    "postalCode": "75017",
+    "addressCountry": "FR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "90"
+  }
+}
