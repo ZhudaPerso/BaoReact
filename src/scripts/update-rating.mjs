@@ -52,8 +52,12 @@ try {
 		name: "BAO BEAUTÉ",
 		url: "https://baobeaute.fr",
 	};
-	// 添加电话和价格区间字段
+}
+
+if (!base.telephone) {
 	base.telephone = "+33 7 66 35 04 87";
+}
+if (!base.priceRange) {
 	base.priceRange = "€€";
 }
 
