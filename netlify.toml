@@ -7,4 +7,4 @@ NODE_VERSION = "20"
 [[scheduled]]
   path = "/.netlify/functions/trigger-build"
   # 每天 03:00（UTC）执行；按需调整
-  schedule = "0 2 * * 0"
+  schedule = "0 20 * * *"
